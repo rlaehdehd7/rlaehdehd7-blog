@@ -1,0 +1,149 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+{
+    "object": "page",
+    "id": "1fe10041-484b-810b-b1ab-cb85e5bdb0f9",
+    "created_time": "2025-05-25T14:19:00.000Z",
+    "last_edited_time": "2025-05-25T14:19:00.000Z",
+    "created_by": {
+        "object": "user",
+        "id": "f672aba6-2e73-4b4b-8d32-1abf07afebb8"
+    },
+    "last_edited_by": {
+        "object": "user",
+        "id": "f672aba6-2e73-4b4b-8d32-1abf07afebb8"
+    },
+    "cover": {
+        "type": "external",
+        "external": {
+            "url": "https://images.unsplash.com/photo-1476820865390-c52aeebb9891?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb"
+        }
+    },
+    "icon": null,
+    "parent": {
+        "type": "database_id",
+        "database_id": "1fe10041-484b-81dd-b850-ebd6982856b4"
+    },
+    "archived": false,
+    "in_trash": false,
+    "properties": {
+        "Description": {
+            "id": "%3BUrC",
+            "type": "rich_text",
+            "rich_text": [
+                {
+                    "type": "text",
+                    "text": {
+                        "content": "Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML or XHTML).",
+                        "link": null
+                    },
+                    "annotations": {
+                        "bold": false,
+                        "italic": false,
+                        "strikethrough": false,
+                        "underline": false,
+                        "code": false,
+                        "color": "default"
+                    },
+                    "plain_text": "Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML or XHTML).",
+                    "href": null
+                }
+            ]
+        },
+        "Slug": {
+            "id": "Kl%5Dm",
+            "type": "rich_text",
+            "rich_text": [
+                {
+                    "type": "text",
+                    "text": {
+                        "content": "css",
+                        "link": null
+                    },
+                    "annotations": {
+                        "bold": false,
+                        "italic": false,
+                        "strikethrough": false,
+                        "underline": false,
+                        "code": false,
+                        "color": "default"
+                    },
+                    "plain_text": "css",
+                    "href": null
+                }
+            ]
+        },
+        "Tags": {
+            "id": "T%5Cnr",
+            "type": "multi_select",
+            "multi_select": [
+                {
+                    "id": "d12cc1cb-2032-4310-b702-ff1e5b3f4321",
+                    "name": "CSS",
+                    "color": "blue"
+                }
+            ]
+        },
+        "Status": {
+            "id": "hy%3Ad",
+            "type": "select",
+            "select": {
+                "id": "7d321161-4960-4e36-8dd4-7191c43c9d3c",
+                "name": "Published",
+                "color": "red"
+            }
+        },
+        "Author": {
+            "id": "jrg_",
+            "type": "people",
+            "people": [
+                {
+                    "object": "user",
+                    "id": "4bfe3f3d-574d-4bac-ac34-904866b85fa4"
+                }
+            ]
+        },
+        "Modified Date": {
+            "id": "tBzY",
+            "type": "date",
+            "date": null
+        },
+        "Date": {
+            "id": "wOPZ",
+            "type": "date",
+            "date": {
+                "start": "2025-02-07",
+                "end": null,
+                "time_zone": null
+            }
+        },
+        "Title": {
+            "id": "title",
+            "type": "title",
+            "title": [
+                {
+                    "type": "text",
+                    "text": {
+                        "content": "Cascading Style Sheets",
+                        "link": null
+                    },
+                    "annotations": {
+                        "bold": false,
+                        "italic": false,
+                        "strikethrough": false,
+                        "underline": false,
+                        "code": false,
+                        "color": "default"
+                    },
+                    "plain_text": "Cascading Style Sheets",
+                    "href": null
+                }
+            ]
+        }
+    },
+    "url": "https://www.notion.so/Cascading-Style-Sheets-1fe10041484b810bb1abcb85e5bdb0f9",
+    "public_url": "https://bristle-resistance-935.notion.site/Cascading-Style-Sheets-1fe10041484b810bb1abcb85e5bdb0f9"
+}
