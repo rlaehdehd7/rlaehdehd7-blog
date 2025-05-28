@@ -10,20 +10,17 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import rehypeSanitize from 'rehype-sanitize';
 import rehypePrettyCode from 'rehype-pretty-code';
-import rehypeSlug from 'rehype-slug';
 import { compile } from '@mdx-js/mdx';
 import withSlugs from 'rehype-slug';
 import withToc from '@stefanprobst/rehype-extract-toc';
 import withTocExport from '@stefanprobst/rehype-extract-toc/mdx';
 
 interface TocEntry {
-  id: string;
+  value: string;
   depth: number;
   id?: string;
   children?: Array<TocEntry>;
 }
-
-type Toc = Array<TocEntry>;
 
 function TableOfContentsLink({ item }: { item: TocEntry }) {
   return (
@@ -92,13 +89,13 @@ export default async function BlogPost({ params }: BlogPostProps) {
           <Separator className="my-8" />
 
           {/* 블로그 본문 */}
-          <div className="prose prose-slate dark:prose-invert max-w-none">
+          <div className="prose prose-neutral dark:prose-invert prose-headings:scroll-mt-[var(--header-height)] max-w-none">
             <MDXRemote
               source={markdown}
               options={{
                 mdxOptions: {
                   remarkPlugins: [remarkGfm],
-                  rehypePlugins: [rehypeSlug, rehypeSanitize, rehypePrettyCode],
+                  rehypePlugins: [withSlugs, rehypeSanitize, rehypePrettyCode],
                 },
               }}
             />
@@ -143,9 +140,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
             <div className="bg-muted/60 space-y-4 rounded-lg p-6 backdrop-blur-sm">
               <h3 className="text-lg font-semibold">목차</h3>
               <nav className="space-y-3 text-sm">
-                {data.toc.map((item) => (
-                  <TableOfContentsLink key={item.id} item={item} />
-                ))}
+                {data?.toc?.map((item) => <TableOfContentsLink key={item.id} item={item} />)}
               </nav>
             </div>
           </div>
