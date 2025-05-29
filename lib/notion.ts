@@ -88,7 +88,25 @@ export const getPostBySlug = async (
   };
 };
 
-export const getPublishedPosts = async (tag?: string, sort?: string): Promise<Post[]> => {
+export interface GetPublishedPostsProps {
+  tag?: string;
+  sort?: string;
+  pageSize?: number;
+  startCursor?: string;
+}
+
+export interface GetPublishedPostsResponse {
+  posts: Post[];
+  hasMore: boolean;
+  nextCursor: string | null;
+}
+
+export const getPublishedPosts = async ({
+  tag = '전체',
+  sort = 'latest',
+  pageSize = 10,
+  startCursor,
+}: GetPublishedPostsProps = {}): Promise<GetPublishedPostsResponse> => {
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID!,
     filter: {
@@ -117,15 +135,23 @@ export const getPublishedPosts = async (tag?: string, sort?: string): Promise<Po
         direction: sort === 'latest' ? 'descending' : 'ascending',
       },
     ],
+    start_cursor: startCursor,
+    page_size: pageSize,
   });
 
-  return response.results
+  const posts = response.results
     .filter((page): page is PageObjectResponse => 'properties' in page)
     .map(getPostMetadata);
+
+  return {
+    posts,
+    hasMore: response.has_more,
+    nextCursor: response.next_cursor,
+  };
 };
 
 export const getTags = async (): Promise<TagFilterItem[]> => {
-  const posts = await getPublishedPosts();
+  const { posts } = await getPublishedPosts({ pageSize: 100 });
 
   // 모든 태그를 추출하고 각 태그의 출현 횟수를 계산
   const tagCount = posts.reduce(
