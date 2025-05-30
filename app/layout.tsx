@@ -16,8 +16,26 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'rlaehdehd7-blog',
-  description: '개발로그',
+  title: {
+    template: '%s | 개발로그',
+    default: '개발로그',
+  },
+  description: '주니어 개발자의 성장 로그를 기록하는 블로그입니다.',
+  keywords: ['개발', '블로그', '코딩', '프로그래밍', '웹개발'],
+  authors: [{ name: 'KDJ', url: 'https://github.com/rlaehdehd7' }],
+  creator: 'KDJ',
+  publisher: 'KDJ',
+  formatDetection: {
+    email: false,
+    telephone: false,
+    address: false,
+  },
+  metadataBase: process.env.NEXT_PUBLIC_SITE_URL
+    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
+    : new URL('https://rlaehdehd7-blog.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default function RootLayout({

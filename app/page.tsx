@@ -7,9 +7,19 @@ import { Suspense } from 'react';
 import TagSectionClient from '@/app/_components/TagSection.client';
 import PostListSkeleton from '@/components/features/blog/PostListSkeleton';
 import TagSectionSkeleton from '@/app/_components/TagSectionSkeleton';
+import { Metadata } from 'next';
+
 interface HomeProps {
   searchParams: Promise<{ tag?: string; sort?: string }>;
 }
+
+export const metadata: Metadata = {
+  title: '홈',
+  description: '주니어 개발자의 성장 로그를 기록하는 블로그입니다.',
+  alternates: {
+    canonical: '/',
+  },
+};
 
 export default async function Home({ searchParams }: HomeProps) {
   const { tag, sort } = await searchParams;

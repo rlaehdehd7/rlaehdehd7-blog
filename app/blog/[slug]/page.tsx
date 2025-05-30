@@ -14,6 +14,46 @@ import withToc from '@stefanprobst/rehype-extract-toc';
 import withTocExport from '@stefanprobst/rehype-extract-toc/mdx';
 import GiscusComments from '@/components/GiscusComments';
 import { notFound } from 'next/navigation';
+import { getPublishedPosts } from '@/lib/notion';
+import { Metadata } from 'next';
+
+// 동적 메타데이터 생성
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const { post } = await getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: '포스트를 찾을 수 없습니다',
+      description: '요청하신 블로그 포스트를 찾을 수 없습니다.',
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.description || `${post.title} - 개발로그`,
+    keywords: post.tags,
+    authors: [{ name: post.author || 'KDJ' }],
+    publisher: 'KDJ',
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: `/blog/${post.slug}`,
+      type: 'article',
+      publishedTime: post.date,
+      modifiedTime: post.modifiedDate,
+      authors: post.author || 'KDJ',
+      tags: post.tags,
+    },
+  };
+}
 
 interface TocEntry {
   value: string;
@@ -21,6 +61,13 @@ interface TocEntry {
   id?: string;
   children?: Array<TocEntry>;
 }
+
+export const generateStaticParams = async () => {
+  const { posts } = await getPublishedPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+};
+
+export const revalidate = 60;
 
 function TableOfContentsLink({ item }: { item: TocEntry }) {
   return (
