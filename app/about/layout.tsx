@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
-import { Code2, User, Briefcase, Newspaper, Coffee, Github } from 'lucide-react';
+import { Code2, User, Briefcase, Newspaper } from 'lucide-react';
 
 interface AboutLayoutProps {
   children: ReactNode;
@@ -10,9 +10,7 @@ const menuItems = [
   { icon: User, label: '프로필', href: '/about' },
   { icon: Code2, label: '기술 스택', href: '/about/skills' },
   { icon: Briefcase, label: '프로젝트', href: '/about/projects' },
-  { icon: Newspaper, label: '블로그', href: '/about/blog' },
-  { icon: Coffee, label: '컨택', href: '/about/contact' },
-  { icon: Github, label: 'Github', href: 'https://github.com', external: true },
+  { icon: Newspaper, label: '요즘 관심사', href: '/about/favorite' },
 ];
 
 export default function AboutLayout({ children }: AboutLayoutProps) {
@@ -27,10 +25,6 @@ export default function AboutLayout({ children }: AboutLayoutProps) {
                 key={item.label}
                 href={item.href}
                 className="text-muted-foreground hover:bg-accent hover:text-accent-foreground flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors"
-                {...(item.external && {
-                  target: '_blank',
-                  rel: 'noopener noreferrer',
-                })}
               >
                 <item.icon className="h-4 w-4" />
                 <span>{item.label}</span>
